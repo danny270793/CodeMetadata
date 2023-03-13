@@ -1,0 +1,19 @@
+[package]
+name = "code-metadata"
+version = "1.0.0"
+authors = ["Danny Vaca <danny270793@gmail.com>"]
+edition = "2021"
+description = """
+With the local path of your code repository computes the metada of the projects
+"""
+documentation = "https://github.com/danny270793/CodeMetadata"
+readme = "readme.md"
+homepage = "https://github.com/danny270793/CodeMetadata"
+repository = "https://github.com/danny270793/CodeMetadata"
+license = "MIT"
+keywords = ["metadata", "code"]
+categories = ["command-line-utilities"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
