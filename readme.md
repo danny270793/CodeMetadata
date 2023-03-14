@@ -6,6 +6,20 @@ With the local path of your code repository computes the metada of the projects
 - Lines by extention
 - Average lines per file
 
+## Usage
+
+The analyze function check all files inside a `--path` and count how many lines have by each extention
+
+```bash
+cargo run analyze --path /home/danny/Github/danny270793
+```
+
+Also can show files by specific extention
+
+```bash
+cargo run show --path /home/danny/Github/danny270793 --extention java
+```
+
 ## Follow me
 
 - [Youtube](https://www.youtube.com/channel/UC5MAQWU2s2VESTXaUo-ysgg)
