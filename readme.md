@@ -10,7 +10,10 @@ With the local path of your code repository computes the metada of the projects
 
 - Files by extention
 - Lines by extention
-- Average lines per file
+- Average lines per file (LPF)
+- Blank lines, total size, longest file (in lines) and last modified date by extention
+
+Inside a git repository only the tracked and not git ignored files are analyzed (when `--path` has a `.git`, or a folder below it does). Broken symlinks are skipped.
 
 ## Usage
 
