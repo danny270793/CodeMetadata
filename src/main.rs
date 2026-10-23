@@ -7,7 +7,7 @@ use std::collections;
 use std::time;
 
 use command::Command;
-use codemetadata::{FileMetadata, CodeMetadata};
+use codemetadata::{FileMetadata, SingleFileMetadata, CodeMetadata};
 use table::Table;
 
 fn main() {
@@ -30,13 +30,21 @@ fn main() {
             row.insert(String::from("Files"), format!("{}", lines[extention].files));
             row.insert(String::from("Lines"), format!("{}", lines[extention].lines));
             row.insert(String::from("LPF"), format!("{}", lines[extention].lines / lines[extention].files));
+            row.insert(String::from("Blank"), format!("{}", lines[extention].blank_lines));
+            row.insert(String::from("Size"), CodeMetadata::format_bytes(lines[extention].bytes));
+            row.insert(String::from("Longest"), format!("{}", lines[extention].longest_file));
+            row.insert(String::from("Modified"), CodeMetadata::format_date(lines[extention].modified));
             rows.push(row);
         });
         let headers: Vec<String> = vec![
             String::from("Extention"),
             String::from("Files"),
             String::from("Lines"),
-            String::from("LPF")
+            String::from("LPF"),
+            String::from("Blank"),
+            String::from("Size"),
+            String::from("Longest"),
+            String::from("Modified")
         ];
     
         println!("took {:?}\n[] sorting result", start.elapsed());
@@ -50,8 +58,8 @@ fn main() {
         let files: Vec<String> = directory::get_files(&command.arguments["path"]);
         let text: String = format!(".{}", &command.arguments["extention"]);
         let files_by_extention: Vec<String> = files.into_iter().filter(|file: &String| {
-            let metadata: (String, usize)  = CodeMetadata::get_metadata(file);
-            file.ends_with(&text) && metadata.0 != ""
+            let metadata: SingleFileMetadata = CodeMetadata::get_metadata(file);
+            file.ends_with(&text) && metadata.extention != ""
         }).collect::<Vec<String>>();
         files_by_extention.iter().for_each(|f| println!("{}", f));
     } else {
